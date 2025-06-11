@@ -1,0 +1,20 @@
+import connectDB from './config/db.js';
+import recebimentoRouter from './src/routes/recebimentoRouter.js';
+
+import express from 'express';
+const app = express();
+const port = 3000;
+
+
+connectDB();
+
+app.use(express.json());
+
+
+
+
+app.use('/', recebimentoRouter);
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
