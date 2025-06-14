@@ -1,32 +1,53 @@
+const {retornarNomeRua} = require('../../util/processarOverpass')
+const {buscarRua} = require('../controllers/ruaController')
 const buracoModel = require('../models/buracoModel');
 
 
-const adicionarReportBuraco = async (tipo, idDispositivo, descricao, localizacao, status, criticidade, confirmacaoes  ) => {
+const adicionarReportBuraco = async (idDispositivo, descricao, localizacao, criticidade  ) => {
 
-
-    const novoReport = new buracoModel({
-        tipo: tipo,
-        idDispositivo: idDispositivo,
-        descricao: descricao,
-        localizacao: localizacao,
-        status: status,
-        criticidade: criticidade,
-        confirmacoes: confirmacaoes
-    })
-
-    const reportAdicionado = await novoReport.save()
+    const nomeRua =  await retornarNomeRua(localizacao.coordinates[0], localizacao.coordinates[1]) // GABRIEL CUIDADO COM A ORDEM DE ENVIO DOS DADOS DE LOCALIZAÇÃO,  PARA API DO NOMINATIM TEM QUE SER LAT/LONG
+    const idRua = await buscarRua(nomeRua)
+    
     
 
-    if(reportAdicionado) {
+    if(nomeRua && idRua){
 
-        return {validacao:true, report:reportAdicionado}
+        const newLocalizacao = {
 
-    }else{
+            rua: nomeRua,
+            ruaID: idRua,
+            type: "Point",
+            coordinates: localizacao.coordinates
+
+        }
+
         
-        return {validacao:false, report: null}
+            const novoReport = new buracoModel({
+
+            idDispositivo: idDispositivo,
+            localizacao: newLocalizacao,
+            criticidade: criticidade
+        })
+
+        if(descricao){
+            novoReport.descricao = descricao
+        }
+
+
+        const reportAdicionado = await novoReport.save()
+        
+
+        if(reportAdicionado) {
+
+            return {reportAdicionado: true}
+
+        }else{
+            
+            return {reportAdicionado: false}
+        }
+
+
     }
-
-
 
 }
 
@@ -40,7 +61,8 @@ const aumentarConfirmacao = async (obj) => {
         
         if(reportAtualizado) {
 
-            return {confirmacaoAtualizado: true}
+            
+            return {confirmacaoAtualizado: true, confirmacoes: reportAtualizado.confirmacoes}
 
         }else
         {
@@ -55,7 +77,7 @@ const aumentarConfirmacao = async (obj) => {
 
 }
 
-const verificarExistenciaBuraco = async (tipo, idDispositivo, descricao, localizacao, status, criticidade, confirmacoes) => {
+const verificarExistenciaBuraco = async (localizacao) => {
 
     //Gabriel a ideia aqui guerreiro é que após receber os dados do body e antes de inserir um burco no banco
     // Ele verifique através dos dados de localização de existe um buraco dentro de um raio de 10m, 
@@ -70,29 +92,23 @@ const verificarExistenciaBuraco = async (tipo, idDispositivo, descricao, localiz
                         type: 'Point',
                         coordinates: localizacao.coordinates
                     },
-                    $maxDistance: 15
+                    $maxDistance: 5
                 }
             }
         });
 
         if(buracoExistente){
 
-            const val = aumentarConfirmacao(buracoExistente)
+            const val = await aumentarConfirmacao(buracoExistente)
             
-            return {buracoExistente: true, reportExistent: buracoExistente, confirmacao: val
-            }
-
+        
+            return {buracoExistente: true, confirmacoes: val }
             
         }
         else
         {
-
-            const reportAdicionado = await adicionarReportBuraco(tipo, idDispositivo, descricao, localizacao, status, criticidade, confirmacoes)
-
-            return {buracoExistente: false, reportAdicionado: reportAdicionado}
-
+            return {buracoExistente: false  }
         }
-
 
     }
 

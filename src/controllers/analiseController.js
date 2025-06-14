@@ -1,0 +1,1 @@
+const ruaModel = require('../models/ruaModel')

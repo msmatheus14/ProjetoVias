@@ -14,10 +14,22 @@ const buracoSchema = new mongoose.Schema({
 
   descricao: { 
     type: String, 
-    maxlength: 500
+    maxlength: 500,
+    default: 'Descrição não informada'
   },
 
   localizacao: {
+
+    rua: {
+      type: String,
+      required: true
+    },
+
+    ruaID: {
+      type: String,
+      required: true
+    },
+
     type: { 
         type: String, 
         enum: ['Point'], 
