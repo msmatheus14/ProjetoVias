@@ -4,11 +4,13 @@ const {adicionarReportBuraco,  verificarExistenciaBuraco} = require('./buracoCon
 
 const recebimentoReport =  async (req, res) => {
 
-    const { idDispositivo, descricao, localizacao, criticidade} = req.body
+    const { idDispositivo, latitude, longitude, descricao, criticidade} = req.body
+
+   
 
     
 
-    if( !idDispositivo || !localizacao|| !criticidade) {
+    if( !idDispositivo || !latitude || !longitude || !criticidade) {
 
 
         res.json({Mensagem: "Erro na entrada de dados através do body"})
@@ -21,8 +23,14 @@ const recebimentoReport =  async (req, res) => {
         }
 
         else
-        if(!localizacao) {
+        if(!latitude) {
             res.status(400).json({Mensagem:'Erro no dado localizacao'})
+        }
+        else
+        if(!longitude){
+
+        res.status(400).json({Mensagem:'Erro no dado localizacao'})
+
         }
         else
         if(!criticidade) {
@@ -32,9 +40,16 @@ const recebimentoReport =  async (req, res) => {
     }else
     {
 
+         const localizacao = {
+
+        coordinates: [latitude, longitude]
+
+    }
 
 
-        const validacaoExistencia = await verificarExistenciaBuraco(localizacao)
+
+        const validacaoExistencia = await verificarExistenciaBuraco(latitude, longitude)
+        
         
         if(validacaoExistencia.buracoExistente == true){
 
@@ -44,7 +59,7 @@ const recebimentoReport =  async (req, res) => {
 
         if(validacaoExistencia.buracoExistente == false){
 
-            const reportAdicionado = await adicionarReportBuraco(idDispositivo, descricao, localizacao, criticidade)
+            const reportAdicionado = await adicionarReportBuraco(idDispositivo, descricao, latitude, longitude, criticidade)
 
             if(reportAdicionado){
 

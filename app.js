@@ -3,6 +3,8 @@ import connectDB from './config/db.js';
 import recebimentoRouter from './src/routes/recebimentoRouter.js';
 import ruaRouter from './src/routes/ruaRouter.js';
 import cidadeRouter from './src/routes/cidadeRouter.js';
+import buracoRouter from './src/routes/buracoRouter.js'
+import analiseRouter from './src/routes/rotaAnalise.js';
 
 import express from 'express';
 const app = express();
@@ -25,6 +27,8 @@ app.get('/', (req, res) => {
 app.use('/', recebimentoRouter);
 app.use('/', ruaRouter);
 app.use('/', cidadeRouter);
+app.use('/', buracoRouter)
+app.use('/', analiseRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

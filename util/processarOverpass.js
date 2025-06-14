@@ -39,6 +39,8 @@ const RuasOverpass = async () => {
 
 const retornarNomeRua = async (lat, lon) => {
 
+  console.log(lat, lon)
+
    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
 
   try {

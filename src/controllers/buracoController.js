@@ -3,11 +3,12 @@ const {buscarRua} = require('../controllers/ruaController')
 const buracoModel = require('../models/buracoModel');
 
 
-const adicionarReportBuraco = async (idDispositivo, descricao, localizacao, criticidade  ) => {
+const adicionarReportBuraco = async (idDispositivo, descricao, latitude, longitude, criticidade  ) => {
 
-    const nomeRua =  await retornarNomeRua(localizacao.coordinates[0], localizacao.coordinates[1]) // GABRIEL CUIDADO COM A ORDEM DE ENVIO DOS DADOS DE LOCALIZAÇÃO,  PARA API DO NOMINATIM TEM QUE SER LAT/LONG
+    const nomeRua =  await retornarNomeRua(latitude, longitude) // GABRIEL CUIDADO COM A ORDEM DE ENVIO DOS DADOS DE LOCALIZAÇÃO,  PARA API DO NOMINATIM TEM QUE SER LAT/LONG
     const idRua = await buscarRua(nomeRua)
     
+    console.log(nomeRua, idRua)
     
 
     if(nomeRua && idRua){
@@ -17,7 +18,7 @@ const adicionarReportBuraco = async (idDispositivo, descricao, localizacao, crit
             rua: nomeRua,
             ruaID: idRua,
             type: "Point",
-            coordinates: localizacao.coordinates
+            coordinates: [latitude, longitude]
 
         }
 
@@ -33,8 +34,9 @@ const adicionarReportBuraco = async (idDispositivo, descricao, localizacao, crit
             novoReport.descricao = descricao
         }
 
-
-        const reportAdicionado = await novoReport.save()
+        
+             const reportAdicionado = await novoReport.save()
+   
         
 
         if(reportAdicionado) {
@@ -77,7 +79,7 @@ const aumentarConfirmacao = async (obj) => {
 
 }
 
-const verificarExistenciaBuraco = async (localizacao) => {
+const verificarExistenciaBuraco = async (latitude, longitude) => {
 
     //Gabriel a ideia aqui guerreiro é que após receber os dados do body e antes de inserir um burco no banco
     // Ele verifique através dos dados de localização de existe um buraco dentro de um raio de 10m, 
@@ -90,7 +92,7 @@ const verificarExistenciaBuraco = async (localizacao) => {
                 $near: {
                     $geometry: {
                         type: 'Point',
-                        coordinates: localizacao.coordinates
+                        coordinates: [latitude, longitude]
                     },
                     $maxDistance: 5
                 }
@@ -118,5 +120,17 @@ const verificarExistenciaBuraco = async (localizacao) => {
     } 
 }
 
+const retornarTodosBuracos = async (req, res) => {
+    try{
 
-module.exports = {adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco}
+        const buracos = await buracoModel.find()
+        res.status(201).json(buracos)
+    }
+    catch(error){
+
+        res.json(error)
+    }
+    
+}
+
+module.exports = {adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos}
