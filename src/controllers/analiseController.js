@@ -54,6 +54,7 @@ const scoreReport = async (req, res) => {
             nome: rua.nome,
             totalBuracos: totalBuraco,
             totalConfirmacoes: totalConfirmacoes,
+            totalCriticidade: totalCriticidade,
             score: score
         })
 
