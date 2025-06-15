@@ -44,7 +44,7 @@ const buracoSchema = new mongoose.Schema({
 
   status: { 
     type: String, 
-    enum: ['Aberto', 'Solucionado'],
+    enum: ['Aberto', 'Fechado'],
     default: 'Aberto' 
   },
 
@@ -52,7 +52,7 @@ const buracoSchema = new mongoose.Schema({
     type: Number, 
     required: true, 
     min: 1, 
-    max: 5 
+    max: 5
   },
 
   confirmacoes: { 

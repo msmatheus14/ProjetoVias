@@ -12,10 +12,60 @@ const returnQuantReport = async (req, res) => {
 
 }
 
-const reportCritico = async (req, res) => {
+const scoreReport = async (req, res) => {
 
-}
+    const ruas = await ruaModel.find()
+    
+    const result = []
+
+    for (const rua of ruas) {
+
+        const rua_id = rua._id.toString()
+    
+
+        const buracos = await buracoModel.find({'localizacao.ruaID':rua_id})
+        console.log(buracos)
+        
+    
+        
+        let totalBuraco = buracos.length
+        let totalConfirmacoes = 0
+        let totalCriticidade = 0
+
+        for (const buraco of buracos) {
+
+            totalCriticidade += buraco.criticidade
+            totalConfirmacoes += buraco.confirmacoes
+        }
+
+        
+
+        const pesoTotalBuracos = 5
+        const pesoTotalConfirmacoes = 4
+        const pesoTotalCriticidade = 4
+
+        const score = (pesoTotalCriticidade * totalCriticidade) + (pesoTotalConfirmacoes * totalConfirmacoes) + (pesoTotalBuracos * totalBuraco)
+        
+        
+
+        result.push({
+
+            id: rua._id,
+            nome: rua.nome,
+            totalBuracos: totalBuraco,
+            totalConfirmacoes: totalConfirmacoes,
+            score: score
+        })
+
+        
+    }
+
+    result.sort((a, b) => b.score - a.score);
+
+        res.json(result)
 
 
+    }
 
-module.exports = {returnQuantReport, reportCritico}
+
+module.exports = {returnQuantReport,  scoreReport}
