@@ -47,16 +47,18 @@ const scoreReport = async (req, res) => {
         const score = (pesoTotalCriticidade * totalCriticidade) + (pesoTotalConfirmacoes * totalConfirmacoes) + (pesoTotalBuracos * totalBuraco)
         
         
+        if(totalBuraco =! 0){
 
-        result.push({
-
-            id: rua._id,
-            nome: rua.nome,
-            totalBuracos: totalBuraco,
-            totalConfirmacoes: totalConfirmacoes,
-            totalCriticidade: totalCriticidade,
-            score: score
-        })
+            result.push({
+    
+                id: rua._id,
+                nome: rua.nome,
+                totalBuracos: totalBuraco,
+                totalConfirmacoes: totalConfirmacoes,
+                totalCriticidade: totalCriticidade,
+                score: score
+            })
+        }
 
         
     }

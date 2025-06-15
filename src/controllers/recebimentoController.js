@@ -63,7 +63,7 @@ const recebimentoReport =  async (req, res) => {
 
             if(reportAdicionado){
 
-                res.status(201).json({buracoExistente: false, reportAdicionado: true})
+                res.status(200).json({buracoExistente: false, reportAdicionado: true})
             }
 
     
