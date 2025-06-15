@@ -132,7 +132,7 @@ const retornarTodosBuracos = async (req, res) => {
             latitude: n.localizacao.coordinates[0],
             longitude: n.localizacao.coordinates[1],
             descricao: n.descricao,
-            criticidade: n.criticidade
+            status: n.status
         }))
 
         
