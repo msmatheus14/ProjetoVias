@@ -15,18 +15,21 @@ const returnQuantReport = async (req, res) => {
 const scoreReport = async (req, res) => {
 
     const ruas = await ruaModel.find()
+    const buracosReport = await buracoModel.find()
     
     const result = []
 
     for (const rua of ruas) {
 
         const rua_id = rua._id.toString()
-    
+        const buracos = []
 
-        const buracos = await buracoModel.find({'localizacao.ruaID':rua_id})
-        console.log(buracos)
-        
-    
+        for(buraco of buracosReport){
+            if(buraco.localizacao.ruaID == rua_id){
+                buracos.push(buraco)
+            }
+        }
+
         
         let totalBuraco = buracos.length
         let totalConfirmacoes = 0
@@ -64,7 +67,7 @@ const scoreReport = async (req, res) => {
     }
 
     result.sort((a, b) => b.score - a.score);
-
+        
         res.json(result)
 
 
