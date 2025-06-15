@@ -133,25 +133,8 @@ const retornarTodosBuracos = async (req, res) => {
     
 }
 
-const alterarStatusBuracoPorRua = async (req, res) => {
-    const {rua} = req.body;
-
-    try {
-        const buracosAtualizados = await buracoModel.updateMany(
-
-            {"rua": rua, "status": "aberto"},
-            { $set: { "status": 'fechado' } },
-
-            res.status(200).json({message: "Buracos atualizados com sucesso!"})
-        )
-    }
-    catch (error) {
-        console.error('Erro ao atualizar buracos:', error);
-
-        res.status(500).json({message: "Erro ao atualizar buracos"})
-    }   
-
-}
 
 
-module.exports = {adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos, alterarStatusBuracoPorRua}
+
+
+module.exports = {adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos}
