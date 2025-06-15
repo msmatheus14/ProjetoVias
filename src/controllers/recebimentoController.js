@@ -6,8 +6,6 @@ const recebimentoReport =  async (req, res) => {
 
     const { idDispositivo, latitude, longitude, descricao, criticidade} = req.body
 
-   
-
     
 
     if( !idDispositivo || !latitude || !longitude || !criticidade) {
@@ -53,7 +51,7 @@ const recebimentoReport =  async (req, res) => {
         
         if(validacaoExistencia.buracoExistente == true){
 
-            res.json(validacaoExistencia)
+            res.status(208).json(validacaoExistencia)
 
         }else
 
@@ -63,7 +61,7 @@ const recebimentoReport =  async (req, res) => {
 
             if(reportAdicionado){
 
-                res.status(200).json({buracoExistente: false, reportAdicionado: true})
+                res.status(201).json({buracoExistente: false, reportAdicionado: true})
             }
 
     

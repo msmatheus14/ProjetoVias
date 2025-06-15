@@ -60,7 +60,6 @@ const scoreReport = async (req, res) => {
             })
         }
 
-        
     }
 
     result.sort((a, b) => b.score - a.score);
