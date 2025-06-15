@@ -122,9 +122,22 @@ const verificarExistenciaBuraco = async (latitude, longitude) => {
 
 const retornarTodosBuracos = async (req, res) => {
     try{
-
+        
         const buracos = await buracoModel.find()
-        res.status(201).json(buracos)
+        
+        const result = buracos.map(n => ({
+
+            id: n._id,
+            nome: n.nome,
+            latitude: n.localizacao.coordinates[0],
+            longitude: n.localizacao.coordinates[1],
+            descricao: n.descricao,
+            criticidade: n.criticidade
+        }))
+
+        
+
+        res.status(201).json(result)
     }
     catch(error){
 
