@@ -82,7 +82,7 @@ const aumentarConfirmacao = async (obj) => {
 const verificarExistenciaBuraco = async (latitude, longitude) => {
 
     //Gabriel a ideia aqui guerreiro é que após receber os dados do body e antes de inserir um burco no banco
-    // Ele verifique através dos dados de localização de existe um buraco dentro de um raio de 10m, 
+    // Ele verifique através dos dados de localização de existe um buraco dentro de um raio de 5m, 
     // caso ele exista guerreiro ele não vai adicionar no banco mas vai incrementar uma variavel confirmacaoes 
     // e consequenctemente isso vai aumentar a criticade do buraco no dashnboard
 

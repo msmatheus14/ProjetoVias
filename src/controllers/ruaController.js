@@ -1,4 +1,5 @@
 const ruaModel = require('../models/ruaModel')
+const buracoModel = require('../models/buracoModel')
 
 const {RuasOverpass, retornarNomeRua} = require('../../util/processarOverpass');
 const {buscarCidade} = require('../controllers/cidadeController');
@@ -46,8 +47,37 @@ const buscarRua = async (nome) => {
 
 }
 
+const retornarRua = async (req, res) => {
+
+    const ruas = await ruaModel.find()
+
+    res.json(ruas)
+
+}
+
+const alterarBuracosPorRua = async (req, res) => {
+    
+
+    try{
+
+        const {ruaId} = req.body
+
+        const resultado = await buracoModel.updateMany({"localizacao.ruaID": ruaId}, { $set: {status:"Fechado"}})
+        console.log(resultado)
+
+        res.status(200).json(resultado)
+
+    }
+    catch(error){
+        
+        console.log(error)
+    }
+
+}
 
 
 
 
-module.exports = { addRua, buscarRua};
+
+
+module.exports = { addRua, buscarRua, retornarRua, alterarBuracosPorRua};
