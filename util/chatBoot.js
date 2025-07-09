@@ -1,6 +1,8 @@
 import pkg from 'whatsapp-web.js'
 import axios from 'axios'
 
+//Adicionado por Matheus Andrade
+
 const {Client, LocalAuth} = pkg
 
 import qrcode from 'qrcode-terminal'
