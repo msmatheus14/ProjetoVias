@@ -1,7 +1,8 @@
-const express = require('express')
+import express from 'express'
 const router = express.Router()
 
-const {retornarTodosBuracos, verificarCidade} = require('../controllers/buracoController')
+import { retornarTodosBuracos, verificarCidade } from '../controllers/buracoController.js';
+
 
 
 router.get('/retornartodosburacos', retornarTodosBuracos)
@@ -9,4 +10,4 @@ router.get('/verificarCidade', verificarCidade)
 
 
 
-module.exports = router
+export default router;

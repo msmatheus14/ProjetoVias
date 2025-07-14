@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 
 const buracoSchema = new mongoose.Schema({
 
@@ -65,4 +66,5 @@ buracoSchema.index({ localizacao: '2dsphere' })
 
 const buracoModel = mongoose.model('Buraco', buracoSchema)
 
-module.exports = buracoModel
+export default buracoModel;
+

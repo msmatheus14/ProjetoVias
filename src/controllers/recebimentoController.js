@@ -1,5 +1,6 @@
 
-const {adicionarReportBuraco,  verificarExistenciaBuraco} = require('./buracoController')
+import { adicionarReportBuraco, verificarExistenciaBuraco } from './buracoController.js';
+
 
 
 const recebimentoReport =  async (req, res) => {
@@ -70,6 +71,4 @@ const recebimentoReport =  async (req, res) => {
 }
 }
 
-module.exports = {recebimentoReport}
-
-//teste
+export { recebimentoReport };

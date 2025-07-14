@@ -1,9 +1,10 @@
 
-
-const express = require('express')
+import express from 'express'
 const router = express.Router()
 
-const {addRua, retornarRua, alterarBuracosPorRua} = require('../controllers/ruaController')
+import { addRua, retornarRua, alterarBuracosPorRua } from '../controllers/ruaController.js';
+
+
 
 
 router.post('/addRua', addRua)
@@ -11,4 +12,4 @@ router.get('/getruas', retornarRua)
 router.put('/updateRuas', alterarBuracosPorRua)
 
 
-module.exports = router
+export default router;

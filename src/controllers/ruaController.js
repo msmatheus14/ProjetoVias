@@ -1,8 +1,9 @@
-const ruaModel = require('../models/ruaModel')
-const buracoModel = require('../models/buracoModel')
+import ruaModel from '../models/ruaModel.js';
+import buracoModel from '../models/buracoModel.js';
 
-const {RuasOverpass, retornarNomeRua} = require('../../util/processarOverpass');
-const {buscarCidade} = require('../controllers/cidadeController');
+import { RuasOverpass, retornarNomeRua } from '../../util/processarOverpass.js';
+import { buscarCidade } from '../controllers/cidadeController.js';
+
 
 
 const addRua = async (req, res) => {
@@ -76,8 +77,9 @@ const alterarBuracosPorRua = async (req, res) => {
 }
 
 
+export { addRua, buscarRua, retornarRua, alterarBuracosPorRua };
 
 
 
 
-module.exports = { addRua, buscarRua, retornarRua, alterarBuracosPorRua};
+

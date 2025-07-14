@@ -1,8 +1,11 @@
-const express = require('express')
+import express from 'express'
 const router = express.Router()
-const recebimentoController = require('../controllers/recebimentoController')
+
+import { recebimentoReport } from '../controllers/recebimentoController.js';
 
 
-router.post('/report', recebimentoController.recebimentoReport)
 
-module.exports = router
+
+router.post('/report', recebimentoReport)
+
+export default router;

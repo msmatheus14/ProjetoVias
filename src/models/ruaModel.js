@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 
 const ruaSchema = new mongoose.Schema({
   
@@ -20,4 +21,5 @@ const ruaSchema = new mongoose.Schema({
 
 const Rua = mongoose.model('Rua', ruaSchema);
 
-module.exports = Rua;
+export default Rua;
+

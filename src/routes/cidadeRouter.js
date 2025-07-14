@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express'
 const router = express.Router();
 
-const {addCidade} = require('../controllers/cidadeController');
+import { addCidade } from '../controllers/cidadeController.js';
+
 
 router.post('/addCidade', addCidade);
 
-module.exports = router;
+export default router;

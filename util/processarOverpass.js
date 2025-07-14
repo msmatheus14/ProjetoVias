@@ -1,5 +1,6 @@
 
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
+
 
 const RuasOverpass = async () => {
 
@@ -65,5 +66,6 @@ const retornarNomeRua = async (lat, lon) => {
 
 }
 
-module.exports = { RuasOverpass, retornarNomeRua }
+export { RuasOverpass, retornarNomeRua };
+
 

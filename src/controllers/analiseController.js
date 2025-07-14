@@ -1,5 +1,7 @@
-const ruaModel = require('../models/ruaModel')
-const buracoModel = require('../models/buracoModel')
+
+import ruaModel from '../models/ruaModel.js'
+import buracoModel from '../models/buracoModel.js'
+
 
 const returnQuantReport = async (req, res) => {
 
@@ -74,4 +76,4 @@ const scoreReport = async (req, res) => {
     }
 
 
-module.exports = {returnQuantReport,  scoreReport}
+export { returnQuantReport, scoreReport };

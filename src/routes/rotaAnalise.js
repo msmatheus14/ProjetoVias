@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
+import { returnQuantReport, scoreReport } from '../controllers/analiseController.js';
+
 const router = express.Router();
 
-const { returnQuantReport, scoreReport} = require('../controllers/analiseController');
-
 router.get('/totalreport', returnQuantReport);
-router.get('/scorevias', scoreReport)
+router.get('/scorevias', scoreReport);
 
-module.exports = router;
+export default router;

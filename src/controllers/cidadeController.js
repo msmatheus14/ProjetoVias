@@ -1,4 +1,5 @@
-const cidadeModel = require('../models/cidadeModel');
+import cidadeModel from '../models/cidadeModel.js';
+
 
 const addCidade = async (req, res) => {
     const { nome, estado } = req.body;
@@ -28,4 +29,4 @@ const buscarCidade = async(nome) => {
     }
 }
 
-module.exports = { addCidade, buscarCidade};
+export { addCidade, buscarCidade };
