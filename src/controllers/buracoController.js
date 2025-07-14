@@ -3,6 +3,19 @@ const {buscarRua} = require('../controllers/ruaController')
 const buracoModel = require('../models/buracoModel');
 
 
+const verificarCidade = async (req, res) => {
+
+    const {latitude, longitude} = req.params
+
+    console.log(latitude, longitude)
+    const nomeRua = await retornarNomeRua(latitude, longitude)
+    const idRua = await buscarRua(nomeRua)
+
+    res.json({nomeRua: nomeRua, idRua: idRua})
+    
+}
+
+
 const adicionarReportBuraco = async (idDispositivo, descricao, latitude, longitude, criticidade  ) => {
 
     const nomeRua =  await retornarNomeRua(latitude, longitude) // GABRIEL CUIDADO COM A ORDEM DE ENVIO DOS DADOS DE LOCALIZAÇÃO,  PARA API DO NOMINATIM TEM QUE SER LAT/LONG
@@ -150,4 +163,4 @@ const retornarTodosBuracos = async (req, res) => {
 
 
 
-module.exports = {adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos}
+module.exports = {adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos, verificarCidade}

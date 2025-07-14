@@ -39,14 +39,13 @@ const RuasOverpass = async () => {
 
 const retornarNomeRua = async (lat, lon) => {
 
-  console.log(lat, lon)
 
    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
 
   try {
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'projetovia/1.0' // obrigatório
+        'User-Agent': 'projetovia/1.0' 
       }
     });
 
@@ -60,7 +59,7 @@ const retornarNomeRua = async (lat, lon) => {
     return rua;
 
   } catch (error) {
-    console.error('Erro ao buscar nome da rua:', error.message);
+    console.error('Erro ao buscar nome da rua:');
     return null;
   }
 

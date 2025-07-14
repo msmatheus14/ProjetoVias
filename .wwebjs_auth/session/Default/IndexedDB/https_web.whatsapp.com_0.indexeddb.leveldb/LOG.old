@@ -1,0 +1,15 @@
+2025/07/13-15:44:02.641 8ee0 Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/07/13-15:44:02.642 8ee0 Recovering log #5757
+2025/07/13-15:44:02.643 8ee0 Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/005757.log 
+2025/07/13-15:44:04.443 8f5c Level-0 table #5772: started
+2025/07/13-15:44:04.446 8f5c Level-0 table #5772: 27659 bytes OK
+2025/07/13-15:44:04.447 8f5c Delete type=0 #5757
+2025/07/13-15:44:04.447 8f5c Manual compaction at level-0 from '\x00t\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00u\x00\x00\x00' @ 0 : 0; will stop at '\x00t\x00\x00\x05' @ 16832444 : 1
+2025/07/13-15:44:04.448 8f5c Compacting 1@0 + 2@1 files
+2025/07/13-15:44:04.452 8f5c Generated table #5773@0: 1837 keys, 33357 bytes
+2025/07/13-15:44:04.515 8f5c Generated table #5774@0: 56909 keys, 1346387 bytes
+2025/07/13-15:44:04.516 8f5c Generated table #5775@0: 100 keys, 4488 bytes
+2025/07/13-15:44:04.516 8f5c Compacted 1@0 + 2@1 files => 1384232 bytes
+2025/07/13-15:44:04.517 8f5c compacted to: files[ 0 3 34 0 0 0 0 ]
+2025/07/13-15:44:04.517 8f5c Delete type=2 #5772
+2025/07/13-15:44:04.517 8f5c Manual compaction at level-0 from '\x00t\x00\x00\x05' @ 16832444 : 1 .. '\x00u\x00\x00\x00' @ 0 : 0; will stop at (end)
