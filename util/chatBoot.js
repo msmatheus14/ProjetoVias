@@ -1,5 +1,6 @@
 import pkg from 'whatsapp-web.js'
 import axios from 'axios'
+import puppeteer, { executablePath } from 'puppeteer'
 
 
 const {Client, LocalAuth} = pkg
@@ -21,6 +22,7 @@ export class ChatBoot {
         authStrategy: new LocalAuth(),
         puppeteer: {
             headless: {
+                executablePath: puppeteer.executablePath(),
                 headless: true,
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
             }
