@@ -18,7 +18,13 @@ export class ChatBoot {
 
        this.client = new Client({
         
-        authStrategy: new LocalAuth()
+        authStrategy: new LocalAuth(),
+        puppeteer: {
+            headless: {
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            }
+        }
     });
  
         this.client.on('qr', qr => {
