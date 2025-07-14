@@ -1,6 +1,6 @@
 
 import ruaModel from '../models/ruaModel.js'
-import buracoModel from '../models/buracoModel.js'
+import  buracoModel from '../models/buracoModel.js'
 
 
 const returnQuantReport = async (req, res) => {
@@ -21,12 +21,14 @@ const scoreReport = async (req, res) => {
     
     const result = []
 
+    console.log(buracosReport, "sdddddd")
+
     for (const rua of ruas) {
 
         const rua_id = rua._id.toString()
         const buracos = []
 
-        for(buraco of buracosReport){
+        for(let buraco of buracosReport){
             if(buraco.localizacao.ruaID == rua_id){
                 buracos.push(buraco)
             }
