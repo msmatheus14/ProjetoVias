@@ -1,0 +1,7 @@
+2025/07/14-19:21:34.642 8eb0 Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/07/14-19:21:34.643 8eb0 Recovering log #408
+2025/07/14-19:21:34.765 8eb0 Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000408.log 
+2025/07/14-19:21:36.302 81d4 Level-0 table #415: started
+2025/07/14-19:21:36.317 81d4 Level-0 table #415: 1307158 bytes OK
+2025/07/14-19:21:36.318 81d4 Delete type=0 #408
+2025/07/14-19:21:36.319 81d4 Manual compaction at level-0 from '\x00~\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x7f\x00\x00\x00' @ 0 : 0; will stop at (end)

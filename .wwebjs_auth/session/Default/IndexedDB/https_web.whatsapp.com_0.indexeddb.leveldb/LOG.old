@@ -1,0 +1,17 @@
+2025/07/14-19:18:55.030 87e4 Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/07/14-19:18:55.030 87e4 Recovering log #402
+2025/07/14-19:18:55.045 87e4 Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000402.log 
+2025/07/14-19:18:56.677 57bc Level-0 table #409: started
+2025/07/14-19:18:56.680 57bc Level-0 table #409: 104702 bytes OK
+2025/07/14-19:18:56.681 57bc Delete type=0 #402
+2025/07/14-19:18:56.682 7d30 Manual compaction at level-0 from '\x00}\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00~\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/07/14-19:18:58.369 7d30 Compacting 1@1 + 3@2 files
+2025/07/14-19:18:58.461 7d30 Generated table #410@1: 87273 keys, 2236457 bytes
+2025/07/14-19:18:58.502 7d30 Generated table #411@1: 23801 keys, 2238634 bytes
+2025/07/14-19:18:58.531 7d30 Generated table #412@1: 19079 keys, 1540403 bytes
+2025/07/14-19:18:58.531 7d30 Compacted 1@1 + 3@2 files => 6015494 bytes
+2025/07/14-19:18:58.532 7d30 compacted to: files[ 0 0 3 0 0 0 0 ]
+2025/07/14-19:18:58.532 7d30 Delete type=2 #404
+2025/07/14-19:18:58.532 7d30 Delete type=2 #405
+2025/07/14-19:18:58.532 7d30 Delete type=2 #406
+2025/07/14-19:18:58.532 7d30 Delete type=2 #409

@@ -5,7 +5,7 @@ import buracoModel from '../models/buracoModel.js';
 
 const verificarCidade = async (req, res) => {
 
-    const {latitude, longitude} = req.params
+    const {latitude, longitude} = req.query
 
     console.log(latitude, longitude)
     const nomeRua = await retornarNomeRua(latitude, longitude)
