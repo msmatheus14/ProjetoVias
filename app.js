@@ -37,6 +37,4 @@ app.use('/', cidadeRouter);
 app.use('/', buracoRouter)
 app.use('/', analiseRouter);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+export default app

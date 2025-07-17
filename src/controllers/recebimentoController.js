@@ -1,74 +1,78 @@
-
 import { adicionarReportBuraco, verificarExistenciaBuraco } from './buracoController.js';
 
+const recebimentoReport = async (req, res) => {
 
+  const { idDispositivo, latitude, longitude, descricao, criticidade } = req.body;
 
-const recebimentoReport =  async (req, res) => {
+  if (!idDispositivo || !latitude || !longitude || !criticidade) {
 
-    const { idDispositivo, latitude, longitude, descricao, criticidade} = req.body
+    if (!idDispositivo) {
 
-    
+      console.log('aqui, sem id');
 
-    if( !idDispositivo || !latitude || !longitude || !criticidade) {
+      return res.status(400).json({ Mensagem: 'Erro no dado idDispositivo' })
 
+    } else if (!latitude) {
 
-        res.json({Mensagem: "Erro na entrada de dados através do body"})
+      return res.status(400).json({ Mensagem: 'Erro no dado localizacao' })
 
+    } else if (!longitude) {
 
-        
+      return res.status(400).json({ Mensagem: 'Erro no dado localizacao' })
 
-        if(!idDispositivo) {
-            res.status(400).json({Mensagem:'Erro no dado idDispositivo'})
-        }
+    } else if (!criticidade) {
 
-        else
-        if(!latitude) {
-            res.status(400).json({Mensagem:'Erro no dado localizacao'})
-        }
-        else
-        if(!longitude){
+      return res.status(400).json({ Mensagem: 'Erro no dado criticidade' })
 
-        res.status(400).json({Mensagem:'Erro no dado localizacao'})
+    }
+  } else {
 
-        }
-        else
-        if(!criticidade) {
-            res.status(400).json({Mensagem:'Erro no dado criticidade'})
-        }
+    const localizacao = {
 
-    }else
-    {
-
-         const localizacao = {
-
-        coordinates: [latitude, longitude]
+      coordinates: [latitude, longitude]
 
     }
 
+    try {
 
+      const validacaoExistencia = await verificarExistenciaBuraco(latitude, longitude);
 
-        const validacaoExistencia = await verificarExistenciaBuraco(latitude, longitude)
-        
-        
-        if(validacaoExistencia.buracoExistente == true){
+      if (validacaoExistencia.buracoExistente === true) {
 
-            res.status(208).json(validacaoExistencia)
+        return res.status(208).json(validacaoExistencia)
+      }
 
-        }else
+      if (validacaoExistencia.buracoExistente === false) {
 
-        if(validacaoExistencia.buracoExistente == false){
+        const reportAdicionado = await adicionarReportBuraco(
 
-            const reportAdicionado = await adicionarReportBuraco(idDispositivo, descricao, latitude, longitude, criticidade)
+          idDispositivo,
+          descricao,
+          latitude,
+          longitude,
+          criticidade
+        )
 
-            if(reportAdicionado){
+        if (reportAdicionado) {
 
-                res.status(201).json({buracoExistente: false, reportAdicionado: true})
-            }
+          return res.status(201).json({ buracoExistente: false, reportAdicionado: true })
 
-    
+        } else {
+
+          return res.status(500).json({ Mensagem: 'Erro ao adicionar report' })
+
+        }
+      }
+
+      return res.status(404).json({ Mensagem: 'Erro desconhecido' })
+
+    } catch (error) {
+
+      console.error('Erro no recebimentoReport:', error)
+
+      return res.status(500).json({ Mensagem: 'Erro interno do servidor' })
     }
-
+  }
 }
-}
 
-export { recebimentoReport };
+export { recebimentoReport }
