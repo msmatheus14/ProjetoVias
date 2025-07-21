@@ -42,6 +42,16 @@ export class ChatBoot {
 
                 if(msg.location){
 
+
+                    const responseCidade = await axios.put('http://localhost:3000/verificarCidadePorRua', {
+                     
+                            latitude: msg.location.latitude,
+                            longitude: msg.location.longitude
+                        
+                    })
+
+                    console.log(responseCidade.data)
+
                     const response = await axios.get('http://localhost:3000/verificarCidade', {
                         params: {
                             latitude: msg.location.latitude,
@@ -49,7 +59,8 @@ export class ChatBoot {
                         }
                     })
 
-                    if(response.data.idRua){
+
+                    if(responseCidade.data == 'Nova Andradina'){
 
                         this.arraymsg.push({remetente: msg.from, latitude: msg.location.latitude, longitude: msg.location.longitude, etapa: 2, valid: true})
 
@@ -60,7 +71,7 @@ export class ChatBoot {
                         msg.reply('Em sua opnião de 1 a 5 qual a gravidade do buraco?')
 
                     }else{
-                        msg.reply(':( \n\n😓Lamento! Infelizmente estamos operando apenas em Nova Andradina. \nFavor forneça uma localização de Nova Andradina ou digite "Sair" para cancelar!')
+                        msg.reply(':(\n\n😓Lamento!\nInfelizmente estamos operando apenas em Nova Andradina.\nFavor forneça uma localização de Nova Andradina ou digite "Sair" para cancelar!')
                     }
                 }
             }
@@ -77,12 +88,11 @@ export class ChatBoot {
                 this.arraymsg.splice(etapa3, etapa3 >= 0 ? 1 : 0)
                 this.arraymsg.splice(etapa4, etapa4 >= 0 ? 1 : 0)
 
-                msg.reply('🧟‍♀️Cancelado!')
+                msg.reply('Cancelado!')
             }
 
             if(this.arraymsg.some(p => p.remetente == msg.from && p.etapa == 2 && p.valid == true)){
 
-                console.log(msg.body, "sdsds")
 
                 if((msg.body == '1' || msg.body == '2' || msg.body == '3' || msg.body == '4' || msg.body == '5') && msg.body != null){
 
@@ -142,13 +152,17 @@ export class ChatBoot {
 
                     try {
                         const response = await axios.post('http://localhost:3000/report', this.obj)
-
+            
                         if(response){
 
                             if(response.status == 208){
-                                msg.reply('😉 Esse buraco já foi reportado por alguém mas aumentamos a priorização dele no sistema. Agradecemos por sua participação!')
+
+                                msg.reply(`:) Esse buraco já foi informado por outro usuário, mas aumentamos a prioridade do seu reporte.\nObrigado por colaborar!\n\nTotal de reports desse buraco: ${response.data.confirmacoes.confirmacoes}`);
+
+                                
                             }else
                             if(response.status == 201){
+
                                 msg.reply('😉 Seu report foi adicionado com sucesso! Agradecemos por sua participação!')
                             }
                         }

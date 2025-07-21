@@ -66,6 +66,37 @@ const retornarNomeRua = async (lat, lon) => {
 
 }
 
-export { RuasOverpass, retornarNomeRua };
+const retornarNomeCidade = async (lat, lon) => {
+  console.log(lat, lon, 'aqui');
+
+  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'projetovia/1.0'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro na requisição para Nominatim');
+    }
+
+    const data = await response.json();
+    const address = data.address;
+
+    
+    const cidade = address.city || address.town || address.village || address.municipality || address.county || 'Cidade não encontrada';
+    
+    console.log('cidade: ', cidade)
+    return cidade;
+
+  } catch (error) {
+    console.error('Erro ao buscar nome da cidade:', error);
+    return null;
+  }
+}
+
+export { RuasOverpass, retornarNomeRua, retornarNomeCidade };
 
 

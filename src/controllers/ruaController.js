@@ -49,12 +49,32 @@ const buscarRua = async (nome) => {
 }
 
 const retornarRua = async (req, res) => {
+    try {
 
-    const ruas = await ruaModel.find()
+        const buracos = await buracoModel.find();
+        const ruas = await ruaModel.find();
 
-    res.json(ruas)
+        const ruasComBuracos = [];
 
-}
+        for (const rua of ruas) {
+            
+            const temBuraco = buracos.some(buraco => 
+                String(rua._id) === String(buraco.localizacao.ruaID)
+            );
+
+           
+            if (temBuraco && !ruasComBuracos.find(r => String(r._id) === String(rua._id))) {
+                ruasComBuracos.push(rua);
+            }
+        }
+
+        res.json(ruasComBuracos); 
+        
+    } catch (error) {
+        res.status(500).json({ erro: "Erro ao buscar ruas com buracos", detalhes: error.message });
+    }
+};
+
 
 const alterarBuracosPorRua = async (req, res) => {
     

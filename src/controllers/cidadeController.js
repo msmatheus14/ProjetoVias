@@ -1,4 +1,5 @@
 import cidadeModel from '../models/cidadeModel.js';
+import {retornarNomeCidade} from '../../util/processarOverpass.js';
 
 
 const addCidade = async (req, res) => {
@@ -29,4 +30,14 @@ const buscarCidade = async(nome) => {
     }
 }
 
-export { addCidade, buscarCidade };
+const verificarCidadePorRua = async (req, res) => {
+
+    const {latitude, longitude} = req.body
+
+    const cidade = await retornarNomeCidade(latitude, longitude);
+
+    return res.json(cidade);
+
+}
+
+export { addCidade, buscarCidade, verificarCidadePorRua };

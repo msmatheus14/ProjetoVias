@@ -70,8 +70,6 @@ describe('TESTE FUNCIONAL ROTA POST /report', () => {
 
   
 
-
-
 })
 
 describe('TESTE DE INTEGRAÇÃO POST /report', () => {
@@ -146,7 +144,7 @@ describe('TESTE DE INTEGRAÇÃO POST /report', () => {
   
    it('Deve responder em até 3 segundos', async () => {
 
-    const tempoInicio = Date.now();
+    const tempoInicio = Date.now()
 
     const res = await request(app).post('/report')
 
@@ -159,8 +157,9 @@ describe('TESTE DE INTEGRAÇÃO POST /report', () => {
         criticidade: 2
 
       })
+      
 
-    
+  
     const tempo = Date.now() - tempoInicio
 
             
