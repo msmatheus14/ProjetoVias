@@ -1,14 +1,11 @@
-2025/09/12-14:32:20.804 7128 Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2025/09/12-14:32:20.804 7128 Recovering log #36
-2025/09/12-14:32:20.825 7128 Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000036.log 
-2025/09/12-14:32:20.826 7128 Delete type=2 #32
-2025/09/12-14:32:20.826 7128 Delete type=2 #38
-2025/09/12-14:32:22.974 1698 Manual compaction at level-0 from '\x00\x1a\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1b\x00\x00\x00' @ 0 : 0; will stop at (end)
-2025/09/12-14:32:22.976 1698 Level-0 table #42: started
-2025/09/12-14:32:22.979 1698 Level-0 table #42: 115156 bytes OK
-2025/09/12-14:32:22.980 1698 Delete type=0 #36
-2025/09/12-14:32:22.980 1698 Manual compaction at level-0 from '\x00\x1b\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1c\x00\x00\x00' @ 0 : 0; will stop at (end)
-2025/09/12-14:32:24.644 7628 Compacting 1@1 + 1@2 files
-2025/09/12-14:32:24.709 7628 Generated table #43@1: 42953 keys, 1845492 bytes
-2025/09/12-14:32:24.709 7628 Compacted 1@1 + 1@2 files => 1845492 bytes
-2025/09/12-14:32:24.709 7628 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/09/12-16:06:03.312 8464 Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/09/12-16:06:03.313 8464 Recovering log #48
+2025/09/12-16:06:03.322 8464 Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000048.log 
+2025/09/12-16:06:08.081 7a84 Level-0 table #53: started
+2025/09/12-16:06:08.084 7a84 Level-0 table #53: 56260 bytes OK
+2025/09/12-16:06:08.085 7a84 Delete type=0 #48
+2025/09/12-16:06:08.086 7a84 Manual compaction at level-0 from '\x00 \x00\x00\x00' @ 72057594037927935 : 1 .. '\x00!\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/09/12-16:06:10.360 7a84 Compacting 1@1 + 1@2 files
+2025/09/12-16:06:10.464 7a84 Generated table #54@1: 46506 keys, 1975753 bytes
+2025/09/12-16:06:10.464 7a84 Compacted 1@1 + 1@2 files => 1975753 bytes
+2025/09/12-16:06:10.465 7a84 compacted to: files[ 0 0 1 0 0 0 0 ]

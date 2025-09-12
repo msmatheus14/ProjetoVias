@@ -1,22 +1,26 @@
-2025/09/12-14:28:26.558 6ec0 Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2025/09/12-14:28:26.558 6ec0 Recovering log #30
-2025/09/12-14:28:26.778 6ec0 Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000030.log 
-2025/09/12-14:28:28.446 61e4 Level-0 table #35: started
-2025/09/12-14:28:28.462 61e4 Level-0 table #35: 909489 bytes OK
-2025/09/12-14:28:28.463 61e4 Delete type=0 #30
-2025/09/12-14:28:28.463 61e4 Manual compaction at level-0 from '\x00\x18\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x19\x00\x00\x00' @ 0 : 0; will stop at (end)
-2025/09/12-14:28:28.464 61e4 Level-0 table #37: started
-2025/09/12-14:28:28.466 61e4 Level-0 table #37: 249 bytes OK
-2025/09/12-14:28:28.466 61e4 Delete type=0 #34
-2025/09/12-14:28:28.467 61e4 Manual compaction at level-0 from '\x00\x19\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1a\x00\x00\x00' @ 0 : 0; will stop at '\x00\x19\x00\x00\x05' @ 187647 : 0
-2025/09/12-14:28:28.467 61e4 Compacting 1@0 + 1@1 files
-2025/09/12-14:28:28.505 61e4 Generated table #38@0: 23379 keys, 451792 bytes
-2025/09/12-14:28:28.505 61e4 Compacted 1@0 + 1@1 files => 451792 bytes
-2025/09/12-14:28:28.506 61e4 compacted to: files[ 0 1 1 0 0 0 0 ]
-2025/09/12-14:28:28.506 61e4 Delete type=2 #37
-2025/09/12-14:28:28.506 61e4 Manual compaction at level-0 from '\x00\x19\x00\x00\x05' @ 187647 : 0 .. '\x00\x1a\x00\x00\x00' @ 0 : 0; will stop at (end)
-2025/09/12-14:28:30.069 7edc Compacting 1@1 + 1@2 files
-2025/09/12-14:28:30.128 7edc Generated table #39@1: 41700 keys, 1803622 bytes
-2025/09/12-14:28:30.128 7edc Compacted 1@1 + 1@2 files => 1803622 bytes
-2025/09/12-14:28:30.129 7edc compacted to: files[ 0 0 1 0 0 0 0 ]
-2025/09/12-14:28:30.129 7edc Delete type=2 #35
+2025/09/12-15:11:26.648 5268 Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/09/12-15:11:26.649 5268 Recovering log #41
+2025/09/12-15:11:26.686 5268 Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000041.log 
+2025/09/12-15:11:26.687 5268 Delete type=2 #39
+2025/09/12-15:11:26.687 5268 Delete type=2 #42
+2025/09/12-15:11:31.327 6368 Manual compaction at level-0 from '\x00\x1c\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1d\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/09/12-15:11:31.331 6368 Level-0 table #46: started
+2025/09/12-15:11:31.338 6368 Level-0 table #46: 207385 bytes OK
+2025/09/12-15:11:31.339 6368 Delete type=0 #41
+2025/09/12-15:11:31.339 6368 Manual compaction at level-0 from '\x00\x1d\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1e\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/09/12-15:11:33.591 6368 Compacting 1@1 + 1@2 files
+2025/09/12-15:11:33.707 6368 Generated table #47@1: 44818 keys, 1916617 bytes
+2025/09/12-15:11:33.707 6368 Compacted 1@1 + 1@2 files => 1916617 bytes
+2025/09/12-15:11:33.708 6368 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/09/12-15:16:35.324 6368 Level-0 table #49: started
+2025/09/12-15:16:35.332 6368 Level-0 table #49: 104373 bytes OK
+2025/09/12-15:16:35.333 6368 Delete type=2 #43
+2025/09/12-15:16:35.333 6368 Delete type=0 #45
+2025/09/12-15:16:35.333 6368 Delete type=2 #46
+2025/09/12-15:16:35.334 6bfc Manual compaction at level-0 from '\x00\x1f\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00 \x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/09/12-15:16:35.743 6bfc Compacting 1@1 + 1@2 files
+2025/09/12-15:16:35.895 6bfc Generated table #50@1: 45932 keys, 1956037 bytes
+2025/09/12-15:16:35.895 6bfc Compacted 1@1 + 1@2 files => 1956037 bytes
+2025/09/12-15:16:35.896 6bfc compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/09/12-15:16:35.896 6bfc Delete type=2 #47
+2025/09/12-15:16:35.896 6bfc Delete type=2 #49

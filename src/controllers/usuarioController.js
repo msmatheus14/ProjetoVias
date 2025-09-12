@@ -41,14 +41,12 @@ export const validarUsuario = async (req, res) => {
 
         const usuario = await UsuarioModel.findOne({ email, senha });
 
-        if (usuario) {
+       if (usuario.email == email && usuario.senha == senha) {
 
-            return res.json({ valido: true })
-
-        } else {
-
-            return res.json({ valido: false })
-
+            res.json({ login: true});
+        }else
+        {
+            res.json({ login: false});
         }
 
     } catch (error) {
