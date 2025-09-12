@@ -41,18 +41,19 @@ export const validarUsuario = async (req, res) => {
 
         const usuario = await UsuarioModel.findOne({ email, senha });
 
-       if (usuario.email == email && usuario.senha == senha) {
+        if (usuario && usuario.email == email && usuario.senha == senha) {
 
             res.json({ login: true});
-        }else
-        {
+        } else {
             res.json({ login: false});
         }
 
     } catch (error) {
 
-        res.status(500).json({ erro: "Erro ao validar usuários", detalhes: error.message });     
-    }   
+            res.status(500).json({ erro: "Erro ao validar usuários", detalhes: error.message });     
+        }   
+    
+    }
 
-}
+
 
