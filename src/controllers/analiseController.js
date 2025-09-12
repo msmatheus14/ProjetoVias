@@ -21,7 +21,6 @@ const scoreReport = async (req, res) => {
     
     const result = []
 
-    console.log(buracosReport, "sdddddd")
 
     for (const rua of ruas) {
 

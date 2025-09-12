@@ -1,4 +1,14 @@
-2025/07/21-19:50:23.303 790c Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2025/07/21-19:50:23.303 790c Recovering log #649
-2025/07/21-19:50:23.323 790c Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000649.log 
-2025/07/21-19:50:24.971 7634 Manual compaction at level-0 from '\x00\xae\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\xaf\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/09/12-14:32:20.804 7128 Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/09/12-14:32:20.804 7128 Recovering log #36
+2025/09/12-14:32:20.825 7128 Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000036.log 
+2025/09/12-14:32:20.826 7128 Delete type=2 #32
+2025/09/12-14:32:20.826 7128 Delete type=2 #38
+2025/09/12-14:32:22.974 1698 Manual compaction at level-0 from '\x00\x1a\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1b\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/09/12-14:32:22.976 1698 Level-0 table #42: started
+2025/09/12-14:32:22.979 1698 Level-0 table #42: 115156 bytes OK
+2025/09/12-14:32:22.980 1698 Delete type=0 #36
+2025/09/12-14:32:22.980 1698 Manual compaction at level-0 from '\x00\x1b\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1c\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/09/12-14:32:24.644 7628 Compacting 1@1 + 1@2 files
+2025/09/12-14:32:24.709 7628 Generated table #43@1: 42953 keys, 1845492 bytes
+2025/09/12-14:32:24.709 7628 Compacted 1@1 + 1@2 files => 1845492 bytes
+2025/09/12-14:32:24.709 7628 compacted to: files[ 0 0 1 0 0 0 0 ]

@@ -1,6 +1,3 @@
-2025/07/21-19:47:02.838 7c48 Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2025/07/21-19:47:02.840 7c48 Recovering log #39
-2025/07/21-19:47:02.841 7c48 Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\Local Storage\leveldb/000039.log 
-2025/07/21-19:48:03.490 8718 Level-0 table #43: started
-2025/07/21-19:48:03.492 8718 Level-0 table #43: 16083 bytes OK
-2025/07/21-19:48:03.493 8718 Delete type=0 #39
+2025/09/12-14:28:26.074 7edc Reusing MANIFEST E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
+2025/09/12-14:28:26.074 7edc Recovering log #3
+2025/09/12-14:28:26.075 7edc Reusing old log E:\Matheus\Estudos\TADS\5° Semestre\Jefeson - Projeto Final\ProjetoVia\.wwebjs_auth\session\Default\Local Storage\leveldb/000003.log 

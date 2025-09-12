@@ -7,6 +7,7 @@ import ruaRouter from './src/routes/ruaRouter.js';
 import cidadeRouter from './src/routes/cidadeRouter.js';
 import buracoRouter from './src/routes/buracoRouter.js'
 import analiseRouter from './src/routes/rotaAnalise.js';
+import userRouter from './src/routes/usuarioRouter.js';
 
 import express from 'express';
 import cors from 'cors'
@@ -36,5 +37,6 @@ app.use('/', ruaRouter);
 app.use('/', cidadeRouter);
 app.use('/', buracoRouter)
 app.use('/', analiseRouter);
+app.use('/', userRouter);
 
 export default app
