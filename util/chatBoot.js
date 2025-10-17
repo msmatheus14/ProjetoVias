@@ -174,6 +174,7 @@ export class ChatBoot {
             }
 
         })
+        
         this.client.initialize()
     }
 
