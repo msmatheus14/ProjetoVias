@@ -28,7 +28,8 @@ const scoreReport = async (req, res) => {
         const buracos = []
 
         for(let buraco of buracosReport){
-            if(buraco.localizacao.ruaID == rua_id){
+
+            if(buraco.localizacao.ruaID == rua_id && buraco.status == "Aberto"){
                 buracos.push(buraco)
             }
         }
