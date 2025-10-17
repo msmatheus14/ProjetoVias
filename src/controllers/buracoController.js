@@ -101,6 +101,7 @@ const verificarExistenciaBuraco = async (latitude, longitude) => {
 
     try{
         const buracoExistente = await buracoModel.findOne({
+
             localizacao: {
                 $near: {
                     $geometry: {
@@ -109,7 +110,8 @@ const verificarExistenciaBuraco = async (latitude, longitude) => {
                     },
                     $maxDistance: 5
                 }
-            }
+            },
+            status: "Aberto"
         });
 
         if(buracoExistente){
