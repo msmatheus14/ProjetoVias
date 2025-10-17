@@ -1,0 +1,45 @@
+[33m8e77614[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m dddfd
+[33m9eb5ea6[m Alterado rota ruas para retornar apenas ruas com buracos abertos
+[33mfd07712[m Desativado chatboot
+[33mcf2eb50[m modificação
+[33mf3bb965[m dd0,
+[33m0d44c2d[m Corrigido problema de validação de login
+[33m8fbf07e[m model usuario, com inclusão, retorno e validação apra login
+[33m8922762[m corrigido retorno de ruas sem buracos
+[33m62dc0e2[m versão com teste
+[33ma72f452[m v22
+[33mdee495c[m v33
+[33m23fd494[m fdd
+[33m2e5e6ad[m correção chatboot v2
+[33m12ea9ac[m corrigido problema da rota scorevia
+[33m1e1516f[m v1d
+[33m15dc4d6[m d
+[33mbd4f2d1[m fix: axios em dependencies
+[33m016961f[m  dd,
+[33m3b5a46e[m correções vercel
+[33m7a436d5[m corrigido implementação do vercel
+[33m6aeabab[m IMPLEMENTAÇÃO CONTROLE DE FLUXO CHATBOT
+[33m3f34daa[m tp 2
+[33m9e735b8[m chatbook 3
+[33m5a5758a[m chatboot 2
+[33m49f8246[m v25
+[33me69cb69[m v24
+[33me084956[m v24
+[33mb67b123[m v23
+[33mfbb6a23[m v22
+[33m7a93e46[m v21
+[33mf4d4897[m v20
+[33m6c1ba8c[m v13
+[33m935fa99[m v12
+[33mc558d43[m v11
+[33m619ace7[m v10
+[33m234cfe2[m v09
+[33m9e98d96[m v08
+[33m6cb4920[m v07
+[33m7d46e6e[m v06
+[33mb5a1a7b[m v05
+[33m1acfb3e[m 04
+[33mf5bc020[m FINALIZADO ALGUMAS ROTAS E PROCESSAMENTOD OS DADOS
+[33m70e5a73[m  03
+[33mbbc4969[m 02 test
+[33me8717c9[m  primeiro
