@@ -59,7 +59,8 @@ const retornarRua = async (req, res) => {
         for (const rua of ruas) {
             
             const temBuraco = buracos.some(buraco => 
-                String(rua._id) === String(buraco.localizacao.ruaID)
+                String(rua._id) === String(buraco.localizacao.ruaID)&&
+                String(buraco.status) === "Aberto"
             );
 
            
