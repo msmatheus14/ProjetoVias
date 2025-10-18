@@ -161,7 +161,7 @@ const retornarTodosBuracos = async (req, res) => {
     
 }
 
-reabrirtodosburacos = async (req, res) => {
+const reabrirtodosburacos = async (req, res) => {
 
     try{
         const result = await buracoModel.updateMany({status:"Fechado"}, {$set:{status:"Aberto"}})
