@@ -161,8 +161,20 @@ const retornarTodosBuracos = async (req, res) => {
     
 }
 
+reabrirtodosburacos = async (req, res) => {
 
-export { adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos, verificarCidade };
+    try{
+        const result = await buracoModel.updateMany({status:"Fechado"}, {$set:{status:"Aberto"}})
+        res.status(201).json(result)
+    }
+    catch(error){
+        res.status(500).json(error)
+    }
+}      
+
+
+
+export { adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos, verificarCidade, reabrirtodosburacos };
 
 
 
