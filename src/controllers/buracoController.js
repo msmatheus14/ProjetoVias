@@ -16,10 +16,11 @@ const verificarCidade = async (req, res) => {
 }
 
 
-const adicionarReportBuraco = async (idDispositivo, descricao, latitude, longitude, criticidade  ) => {
+const adicionarReportBuraco = async (idDispositivo, descricao, latitude, longitude, criticidade ) => {
 
     const nomeRua =  await retornarNomeRua(latitude, longitude) // GABRIEL CUIDADO COM A ORDEM DE ENVIO DOS DADOS DE LOCALIZAÇÃO,  PARA API DO NOMINATIM TEM QUE SER LAT/LONG
     const idRua = await buscarRua(nomeRua)
+    const data2 = Date.now()
     
     console.log(nomeRua, idRua)
     
@@ -40,7 +41,9 @@ const adicionarReportBuraco = async (idDispositivo, descricao, latitude, longitu
 
             idDispositivo: idDispositivo,
             localizacao: newLocalizacao,
-            criticidade: criticidade
+            criticidade: criticidade,
+            data: data2
+
         })
 
         if(descricao){
@@ -147,7 +150,9 @@ const retornarTodosBuracos = async (req, res) => {
             latitude: n.localizacao.coordinates[0],
             longitude: n.localizacao.coordinates[1],
             descricao: n.descricao,
-            status: n.status
+            status: n.status,
+            data: n.data,
+            
         }))
 
         

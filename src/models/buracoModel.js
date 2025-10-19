@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 
-
 const buracoSchema = new mongoose.Schema({
-
   tipo: {
     type: String,
     default: 'Buraco'
@@ -20,7 +18,6 @@ const buracoSchema = new mongoose.Schema({
   },
 
   localizacao: {
-
     rua: {
       type: String,
       required: true
@@ -59,12 +56,15 @@ const buracoSchema = new mongoose.Schema({
   confirmacoes: { 
     type: Number, 
     default: 1 
+  },
+  data: {
+    type: Date,
+    required: true
   }
-});
+}, ); 
 
-buracoSchema.index({ localizacao: '2dsphere' })
+buracoSchema.index({ localizacao: '2dsphere' });
 
-const buracoModel = mongoose.model('Buraco', buracoSchema)
+const buracoModel = mongoose.model('Buraco', buracoSchema);
 
 export default buracoModel;
-
