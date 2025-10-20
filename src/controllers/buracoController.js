@@ -177,11 +177,36 @@ const reabrirtodosburacos = async (req, res) => {
     }
 
     
-}      
+} 
+
+const excluirTodosBuracos = async (req, res) => {
+
+    try{
+        const result = await buracoModel.deleteMany({})
+        res.status(201).json(result)
+    }
+    catch(error){
+        res.status(500).json(error)
+    }
+
+}   
+
+const fecharBuracoPorID = async (req, res) => {
+
+    
+
+    try{
+        const result = await buracoModel.updateMany({id: req.params.id, status:"Aberto"}, {$set:{status:"Fechado"}})
+        res.status(201).json(result)
+    }
+    catch(error){
+        res.status(500).json(error)
+    }
+
+}
 
 
-
-export { adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos, verificarCidade, reabrirtodosburacos };
+export { adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos, verificarCidade, reabrirtodosburacos, excluirTodosBuracos, fecharBuracoPorID };
 
 
 

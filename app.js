@@ -1,6 +1,5 @@
 import connectDB from './config/db.js';
 
-//import {ChatBoot} from './util/chatBoot.js'
 
 import recebimentoRouter from './src/routes/recebimentoRouter.js';
 import ruaRouter from './src/routes/ruaRouter.js';
@@ -28,9 +27,8 @@ app.get('/', (req, res) => {
 });
 
 
-//const chatboot = new ChatBoot()
 
-//testando
+
 
 app.use('/', recebimentoRouter);
 app.use('/', ruaRouter);

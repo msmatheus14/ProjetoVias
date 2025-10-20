@@ -77,5 +77,47 @@ const scoreReport = async (req, res) => {
 
     }
 
+  const historicoReport = async (req, res) => {
+    try {
+        const hoje = new Date();
+        const dozeMesesAtras = new Date(hoje.getFullYear(), hoje.getMonth() - 11, 1);
 
-export { returnQuantReport, scoreReport };
+        const reports = await buracoModel.find({
+            data: { $gte: dozeMesesAtras }
+        });
+
+        const contador = {};
+
+        reports.forEach(report => {
+            const d = new Date(report.data);
+            const mesAno = `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}`;
+            contador[mesAno] = (contador[mesAno] || 0) + 1;
+        });
+
+        const nomesMeses = [
+            "Janeiro", "Fevereiro", "Março", "Abril",
+            "Maio", "Junho", "Julho", "Agosto",
+            "Setembro", "Outubro", "Novembro", "Dezembro"
+        ];
+
+        const resultado = [];
+        for (let i = 0; i < 12; i++) {
+            const d = new Date(hoje.getFullYear(), hoje.getMonth() - 11 + i, 1);
+            const mesAnoKey = `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}`;
+            resultado.push({
+                mes: nomesMeses[d.getMonth()],
+                ano: d.getFullYear(),
+                total: contador[mesAnoKey] || 0
+            });
+        }
+
+        res.json(resultado);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Erro ao gerar relatório" });
+    }
+};
+
+
+
+export { returnQuantReport, scoreReport, historicoReport };

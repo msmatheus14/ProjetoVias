@@ -1,9 +1,10 @@
 import express from 'express';
-import { returnQuantReport, scoreReport } from '../controllers/analiseController.js';
+import { returnQuantReport, scoreReport, historicoReport} from '../controllers/analiseController.js';
 
 const router = express.Router();
 
 router.get('/totalreport', returnQuantReport);
 router.get('/scorevias', scoreReport);
+router.get('/historico', historicoReport);
 
 export default router;
