@@ -51,12 +51,10 @@ export class ChatBoot {
         if (userState.etapa === 0) {
 
             msg.reply(
-
                 'Bem-vindo ao Chatbot do Projeto Vias!\n\n' +
                 '1 - Reportar buraco\n' +
                 '2 - Verificar estado de reportes\n\n' +
                 'Digite "Sair" para cancelar.'
-
             );
 
             this.userStates[from] = { etapa: 1, status: 'menu' };
@@ -68,33 +66,31 @@ export class ChatBoot {
             if (text === '1') {
 
                 this.userStates[from] = { etapa: 2, status: 'aguardandoLocalizacao' };
-
                 msg.reply('Envie a localização do buraco que deseja reportar.');
-
                 return;
+
             } else if (text === '2') {
 
-                this.userStates[from] = {etapa: 2, status: 'retornoburacos' }
+                this.userStates[from] = {etapa: 2, status: 'retornoburacos' };
 
-                const idDispositivo = msg.from
+                const idDispositivo = msg.from;
 
                 try {
                     const response = await axios.get('http://localhost:3000/retornarestados', {
                         params: { idDispositivo } 
                     });
                     
-                    let mensagem = "Buracos encontrados:\n\n"
+                    let mensagem = "Buracos encontrados:\n\n";
 
                     response.data.forEach(b => {
-
-                        mensagem += `Buraco ${b.N}\n`
-                        mensagem += `Data: ${b.data}\n`
-                        mensagem += `Latitude: ${b.latitude}\n`
-                        mensagem += `Longitude: ${b.longitude}\n`
-                        mensagem += `Descrição: ${b.descricao}\n`
-                        mensagem += `Status: ${b.status}\n`
-                        mensagem += `------------------------\n`
-                    })
+                        mensagem += `Buraco ${b.N}\n`;
+                        mensagem += `Data: ${b.data}\n`;
+                        mensagem += `Latitude: ${b.latitude}\n`;
+                        mensagem += `Longitude: ${b.longitude}\n`;
+                        mensagem += `Descrição: ${b.descricao}\n`;
+                        mensagem += `Status: ${b.status}\n`;
+                        mensagem += `------------------------\n`;
+                    });
                     
                     msg.reply(mensagem);
                 } catch (error) {
@@ -104,8 +100,8 @@ export class ChatBoot {
 
                 delete this.userStates[from];
                 return;
-            } else {
 
+            } else {
                 msg.reply('Opção inválida. Escolha 1 ou 2.');
             }
 
@@ -124,13 +120,10 @@ export class ChatBoot {
                 if (cidadeResp.data != 'Nova Andradina') {
 
                     msg.reply(
-
                         'Infelizmente estamos operando apenas em Nova Andradina.\n' +
                         'Por favor, envie uma localização válida ou digite "Sair" para cancelar.'
-
-                    )
-
-                    return
+                    );
+                    return;
 
                 } else {
 
@@ -149,7 +142,7 @@ export class ChatBoot {
                             '4 - Grave (dificulta o tráfego e pode causar danos)\n' +
                             '5 - Crítico (alto risco de acidentes)'
                         );
-}
+                    }
                 }
 
                 this.userStates[from] = {
@@ -160,7 +153,6 @@ export class ChatBoot {
                 };
 
             } catch (error) {
-                
                 console.error('Erro ao verificar cidade:', error);
                 msg.reply('Ocorreu um erro ao verificar a cidade. Tente novamente.');
             }
@@ -181,45 +173,16 @@ export class ChatBoot {
             };
 
             msg.reply(
-                
-                'Deseja adicionar um comentário sobre o buraco?\n\n' +
-                    '1 - Sim\n' +
-                    '2 - Não' 
-                
+                '\n\nDeseja adicionar um comentário sobre o buraco?\n\n' +
+                'Digite 1 para pular ou escreva seu comentário.'
             );
-
             return;
         }
 
         if (userState.etapa === 4 && userState.status === 'aguardandoDescricao') {
 
-            if (text === '1') {
-                msg.reply('Digite sua descrição do buraco:');
-                this.userStates[from] = {
-                    ...userState,
-                    etapa: 5,
-                    status: 'esperandoDescricaoTexto'
-                };
-                return;
-            } 
-
-            if (text === '2') {
-                this.userStates[from] = {
-                    ...userState,
-                    etapa: 5,
-                    status: 'enviandoBuraco',
-                    descricao: 'SEM DESCRIÇÃO'
-                };
-            }
-        }
-
-        if (userState.etapa === 5) {
-
-            let descricaoFinal = userState.descricao;
-
-            if (userState.status === 'esperandoDescricaoTexto') {
-                descricaoFinal = text; 
-            }
+            
+            let descricaoFinal = text === '1' ? 'SEM DESCRIÇÃO' : text;
 
             const reportObj = {
                 idDispositivo: msg.from,
