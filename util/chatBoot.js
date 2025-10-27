@@ -135,7 +135,7 @@ export class ChatBoot {
                     if (ruaResp) {
                         msg.reply(
                             `Localização recebida!\nBuraco localizado na rua: ${ruaResp.data.nomeRua}\n\n` +
-                            `Informe a gravidade do buraco (1 a 5):\n` +
+                            `Informe a gravidade do buraco (1 a 5):\n\n` +
                             '1 - Leve (quase imperceptível)\n' +
                             '2 - Moderado (afeta um pouco a via)\n' +
                             '3 - Considerável (gera desconforto ao passar)\n' +
