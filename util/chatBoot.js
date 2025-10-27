@@ -14,6 +14,7 @@ export class ChatBoot {
 
             authStrategy: new LocalAuth(),
             puppeteer: {
+                executablePath: '/usr/bin/chromium-browser',
                 headless: true,
                 args: [
                     '--no-sandbox',
