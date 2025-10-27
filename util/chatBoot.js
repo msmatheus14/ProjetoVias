@@ -196,7 +196,6 @@ export class ChatBoot {
                     '1 - Sim\n' +
                     '2 - Não\n' 
                 
-               
             );
 
             return;
@@ -204,21 +203,19 @@ export class ChatBoot {
 
         if (userState.etapa === 4 && userState.status === 'aguardandoDescricao') {
 
-            let descricao = 'SEM DESCRIÇÃO'
-            
-            if(text === "1"){
-                
-                descricao = text
-            }
+            const descricao = text && text.trim() !== '' && text !== '1'
+            ? text
+            : 'SEM DESCRIÇÃO';
             
             const reportObj = {
-
+                
                 idDispositivo: msg.from,
-                descricao:descricao,
+                descricao,
                 latitude: userState.latitude,
                 longitude: userState.longitude,
                 criticidade: userState.gravidade
-            };
+};
+
 
             try {
                 const response = await axios.post(
