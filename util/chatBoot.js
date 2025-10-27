@@ -117,37 +117,44 @@ export class ChatBoot {
                     { latitude, longitude }
                 );
 
-                if (cidadeResp.data !== 'Nova Andradina') {
+                if (cidadeResp.data != 'Nova Andradina') {
                     msg.reply(
                         'Infelizmente estamos operando apenas em Nova Andradina.\n' +
                         'Por favor, envie uma localização válida ou digite "Sair" para cancelar.'
                     );
                     return;
-                }
+                }else{
 
-                const ruaResp = await axios.get(
+                    const ruaResp = await axios.get(
                     'http://localhost:3000/verificarCidade',
                     { params: { latitude, longitude } }
                 );
 
-                msg.reply(`Localização recebida! Buraco localizado na ${ruaResp.data.nomeRua}`);
-                msg.reply(
+                if(ruaResp){
 
-                    'De 1 a 5, qual a gravidade do buraco?\n\n' +
+                    msg.reply(`Localização recebida! Buraco localizado na ${ruaResp.data.nomeRua}` + '\n\nDe 1 a 5, qual a gravidade do buraco?\n\n' +
                     '1 - Leve (quase imperceptível)\n' +
                     '2 - Moderado (afeta um pouco a via)\n' +
                     '3 - Considerável (causa incômodo ao passar)\n' +
                     '4 - Grave (dificulta o tráfego)\n' +
-                    '5 - Crítico (risco de acidente)'
-                );
+                    '5 - Crítico (risco de acidente)');
 
+
+                }
+
+
+                }
+
+            
                 this.userStates[from] = {
                     etapa: 3,
                     latitude,
                     longitude,
                     status: 'aguardandoGravidade'
                 };
+
             } catch (error) {
+                
                 console.error('Erro ao verificar cidade:', error);
                 msg.reply('Ocorreu um erro ao verificar a cidade. Tente novamente.');
             }
