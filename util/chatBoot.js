@@ -72,49 +72,47 @@ export class ChatBoot {
                 msg.reply('Envie a localização do buraco que deseja reportar.');
 
                 return;
-            }else
-
-            if (text === '2') {
+            } else if (text === '2') {
 
                 this.userStates[from] = {etapa: 2, status: 'retornoburacos' }
 
                 const idDispositivo = msg.from
 
-                const response = await axios.get('http://localhost:3000/retornarestados', {
-                params: { idDispositivo } 
-                });
-                
-                let mensagem = "Buracos encontrados:\n\n"
+                try {
+                    const response = await axios.get('http://localhost:3000/retornarestados', {
+                        params: { idDispositivo } 
+                    });
+                    
+                    let mensagem = "Buracos encontrados:\n\n"
 
-                response.data.forEach(b => {
+                    response.data.forEach(b => {
 
-                mensagem += `Buraco ${b.N}\n`
-                mensagem += `Data: ${b.data}\n`
-                mensagem += `Latitude: ${b.latitude}\n`
-                mensagem += `Longitude: ${b.longitude}\n`
-                mensagem += `Descrição: ${b.descricao}\n`
-                mensagem += `Status: ${b.status}\n`
+                        mensagem += `Buraco ${b.N}\n`
+                        mensagem += `Data: ${b.data}\n`
+                        mensagem += `Latitude: ${b.latitude}\n`
+                        mensagem += `Longitude: ${b.longitude}\n`
+                        mensagem += `Descrição: ${b.descricao}\n`
+                        mensagem += `Status: ${b.status}\n`
+                        mensagem += `------------------------\n`
+                    })
+                    
+                    msg.reply(mensagem);
+                } catch (error) {
+                    console.error('Erro ao buscar buracos:', error);
+                    msg.reply('Ocorreu um erro ao buscar os buracos.');
+                }
 
-                mensagem += `------------------------\n`
-
-            })
-            
-
-            msg.reply(mensagem);
-            
-            delete this.userStates[from];
-            
-            }
-            else {
+                delete this.userStates[from];
+                return;
+            } else {
 
                 msg.reply('Opção inválida. Escolha 1 ou 2.');
             }
 
-            
             return;
         }
 
-        if (userState.etapa === 2 && msg.location && userState.status == 'aguardandoLocalizacao') {
+        if (userState.etapa === 2 && msg.location && userState.status === 'aguardandoLocalizacao') {
             try {
                 const { latitude, longitude } = msg.location;
 
@@ -134,32 +132,26 @@ export class ChatBoot {
 
                     return
 
-                }else{
+                } else {
 
                     const ruaResp = await axios.get(
+                        'http://localhost:3000/verificarCidade',
+                        { params: { latitude, longitude } }
+                    );
 
-                    'http://localhost:3000/verificarCidade',
-
-                    { params: { latitude, longitude } }
-                    
-                );
-
-                if(ruaResp){
-
-                    msg.reply(`Localização recebida! Buraco localizado na ${ruaResp.data.nomeRua}` + '\n\nDe 1 a 5, qual a gravidade do buraco?\n\n' +
-                    '1 - Leve (quase imperceptível)\n' +
-                    '2 - Moderado (afeta um pouco a via)\n' +
-                    '3 - Considerável (causa incômodo ao passar)\n' +
-                    '4 - Grave (dificulta o tráfego)\n' +
-                    '5 - Crítico (risco de acidente)');
-
-
+                    if (ruaResp) {
+                        msg.reply(
+                            `Localização recebida!\nBuraco localizado na rua: ${ruaResp.data.nomeRua}\n\n` +
+                            `Informe a gravidade do buraco (1 a 5):\n` +
+                            '1 - Leve (quase imperceptível)\n' +
+                            '2 - Moderado (afeta um pouco a via)\n' +
+                            '3 - Considerável (gera desconforto ao passar)\n' +
+                            '4 - Grave (dificulta o tráfego e pode causar danos)\n' +
+                            '5 - Crítico (alto risco de acidentes)'
+                        );
+}
                 }
 
-
-                }
-
-            
                 this.userStates[from] = {
                     etapa: 3,
                     latitude,
@@ -174,8 +166,6 @@ export class ChatBoot {
             }
             return;
         }
-
-
 
         if (userState.etapa === 3 && userState.status === 'aguardandoGravidade') {
             if (!['1', '2', '3', '4', '5'].includes(text)) {
@@ -192,7 +182,7 @@ export class ChatBoot {
 
             msg.reply(
                 
-                '\n\nDeseja adicionar um comentário sobre o buraco?\n\n' +
+                'Deseja adicionar um comentário sobre o buraco?\n\n' +
                     '1 - Sim\n' +
                     '2 - Não' 
                 
@@ -204,20 +194,16 @@ export class ChatBoot {
         if (userState.etapa === 4 && userState.status === 'aguardandoDescricao') {
 
             if (text === '1') {
-
                 msg.reply('Digite sua descrição do buraco:');
-                
                 this.userStates[from] = {
                     ...userState,
                     etapa: 5,
                     status: 'esperandoDescricaoTexto'
                 };
-
                 return;
             } 
-            
-            if (text === '2') {
 
+            if (text === '2') {
                 this.userStates[from] = {
                     ...userState,
                     etapa: 5,
@@ -225,56 +211,42 @@ export class ChatBoot {
                     descricao: 'SEM DESCRIÇÃO'
                 };
             }
-
         }
 
         if (userState.etapa === 5) {
 
+            let descricaoFinal = userState.descricao;
+
             if (userState.status === 'esperandoDescricaoTexto') {
-                this.userStates[from] = {
-                    ...userState,
-                    descricao: text,
-                    status: 'enviandoBuraco'
-                };
+                descricaoFinal = text; 
             }
 
-            if (userState.status === 'enviandoBuraco') {
+            const reportObj = {
+                idDispositivo: msg.from,
+                descricao: descricaoFinal,
+                latitude: userState.latitude,
+                longitude: userState.longitude,
+                criticidade: userState.gravidade
+            };
 
-                const reportObj = {
-                    idDispositivo: msg.from,
-                    descricao: userState.descricao,
-                    latitude: userState.latitude,
-                    longitude: userState.longitude,
-                    criticidade: userState.gravidade
-                };
+            try {
+                const response = await axios.post('http://localhost:3000/report', reportObj);
 
-                try {
-                    const response = await axios.post(
-                        'http://localhost:3000/report',
-                        reportObj
+                if (response.status === 208) {
+                    msg.reply(
+                        `Buraco já reportado anteriormente.\n` +
+                        `A prioridade do seu reporte foi aumentada.\n` +
+                        `Total de confirmações: ${response.data.confirmacoes.confirmacoes}`
                     );
-
-                    if (response.status === 208) {
-                        msg.reply(
-                            `Buraco já reportado anteriormente.\n` +
-                            `A prioridade do seu reporte foi aumentada.\n` +
-                            `Total de confirmações: ${response.data.confirmacoes.confirmacoes}`
-                        );
-                    } else if (response.status === 201) { 
-
-                        msg.reply('Reporte adicionado com sucesso! Obrigado pela colaboração!');
-
-                    }
-                } catch (error) {
-
-                    console.error('Erro ao enviar reporte:', error);
-
-                    msg.reply('Ocorreu um erro ao enviar seu reporte. Tente novamente mais tarde.');
-
+                } else if (response.status === 201) {
+                    msg.reply('Reporte adicionado com sucesso! Obrigado pela colaboração!');
                 }
-
-                delete this.userStates[from];
+            } catch (error) {
+                console.error('Erro ao enviar reporte:', error);
+                msg.reply('Ocorreu um erro ao enviar seu reporte. Tente novamente mais tarde.');
             }
+
+            delete this.userStates[from];
         }
     }
 }
