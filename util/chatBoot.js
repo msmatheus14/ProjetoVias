@@ -173,8 +173,8 @@ export class ChatBoot {
             };
 
             msg.reply(
-                '\n\nDeseja adicionar um comentário sobre o buraco?\n\n' +
-                'Digite 1 para pular ou escreva seu comentário.'
+                'Deseja adicionar um comentário sobre o buraco?\n\n' +
+                'Digite 1 - para pular ou escreva seu comentário.'
             );
             return;
         }
