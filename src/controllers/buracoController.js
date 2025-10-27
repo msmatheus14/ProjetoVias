@@ -18,6 +18,7 @@ const verificarCidade = async (req, res) => {
 
 const adicionarReportBuraco = async (idDispositivo, descricao, latitude, longitude, criticidade ) => {
 
+  
     const nomeRua =  await retornarNomeRua(latitude, longitude) // GABRIEL CUIDADO COM A ORDEM DE ENVIO DOS DADOS DE LOCALIZAÇÃO,  PARA API DO NOMINATIM TEM QUE SER LAT/LONG
     const idRua = await buscarRua(nomeRua)
     const data2 = Date.now()
@@ -146,6 +147,7 @@ const retornarTodosBuracos = async (req, res) => {
         const result = buracos.map(n => ({
 
             id: n._id,
+            idDispositivo: n.idDispositivo,
             nome: n.nome,
             latitude: n.localizacao.coordinates[0],
             longitude: n.localizacao.coordinates[1],
@@ -205,8 +207,39 @@ const fecharBuracoPorID = async (req, res) => {
 
 }
 
+const retornarEstadosBuracos = async (req, res) => {
+  try {
 
-export { adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos, verificarCidade, reabrirtodosburacos, excluirTodosBuracos, fecharBuracoPorID };
+    const { idDispositivo } = req.query
+
+    const buracos = await buracoModel.find({idDispositivo:idDispositivo})
+    
+
+    const retorno = buracos.map((n, i) => ({
+
+        N: i + 1, 
+        data: n.data,
+        latitude: n.localizacao.coordinates[0],
+        longitude: n.localizacao.coordinates[1],
+        descricao: n.descricao,
+        status: n.status,
+
+    }))
+
+    res.json(retorno)
+
+     
+
+  }
+  catch(error){
+
+  }
+    
+
+};
+
+
+export { adicionarReportBuraco, aumentarConfirmacao, verificarExistenciaBuraco, retornarTodosBuracos, verificarCidade, reabrirtodosburacos, excluirTodosBuracos, fecharBuracoPorID, retornarEstadosBuracos };
 
 
 

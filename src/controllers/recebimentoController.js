@@ -8,7 +8,7 @@ const recebimentoReport = async (req, res) => {
 
     if (!idDispositivo) {
 
-      console.log('aqui, sem id');
+      
 
       return res.status(400).json({ Mensagem: 'Erro no dado idDispositivo' })
 
@@ -43,6 +43,7 @@ const recebimentoReport = async (req, res) => {
       }
 
       if (validacaoExistencia.buracoExistente === false) {
+
 
         const reportAdicionado = await adicionarReportBuraco(
 
