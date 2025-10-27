@@ -72,7 +72,7 @@ export class ChatBoot {
                 msg.reply('Envie a localização do buraco que deseja reportar.');
 
                 return;
-            }
+            }else
 
             if (text === '2') {
 
@@ -98,14 +98,19 @@ export class ChatBoot {
                 mensagem += `------------------------\n`
 
             })
+            
 
             msg.reply(mensagem);
             
             delete this.userStates[from];
             
             }
+            else {
+                
+                msg.reply('Opção inválida. Escolha 1 ou 2.');
+            }
 
-            msg.reply('Opção inválida. Escolha 1 ou 2.');
+            
             return;
         }
 
