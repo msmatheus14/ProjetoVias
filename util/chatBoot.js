@@ -106,7 +106,7 @@ export class ChatBoot {
             
             }
             else {
-                
+
                 msg.reply('Opção inválida. Escolha 1 ou 2.');
             }
 
@@ -124,16 +124,24 @@ export class ChatBoot {
                 );
 
                 if (cidadeResp.data != 'Nova Andradina') {
+
                     msg.reply(
+
                         'Infelizmente estamos operando apenas em Nova Andradina.\n' +
                         'Por favor, envie uma localização válida ou digite "Sair" para cancelar.'
-                    );
-                    return;
+
+                    )
+
+                    return
+
                 }else{
 
                     const ruaResp = await axios.get(
+
                     'http://localhost:3000/verificarCidade',
+
                     { params: { latitude, longitude } }
+                    
                 );
 
                 if(ruaResp){
@@ -183,20 +191,30 @@ export class ChatBoot {
             };
 
             msg.reply(
-                'Digite uma breve descrição sobre o buraco ou escreva "NÃO" se preferir não descrever.\n\n' +
-                'Exemplo: "Buraco grande no meio da pista", "Em frente à padaria", etc.'
+                
+                '\n\nDeseja adicionar um comentário sobre o buraco?\n\n' +
+                    '1 - Sim\n' +
+                    '2 - Não\n' 
+                
+               
             );
+
             return;
         }
 
         if (userState.etapa === 4 && userState.status === 'aguardandoDescricao') {
-            const descricao = ['não', 'nao', 'n'].includes(text?.toLowerCase())
-                ? 'SEM DESCRIÇÃO'
-                : text;
 
+            let descricao = 'SEM DESCRIÇÃO'
+            
+            if(text === "1"){
+                
+                descricao = text
+            }
+            
             const reportObj = {
+
                 idDispositivo: msg.from,
-                descricao,
+                descricao:descricao,
                 latitude: userState.latitude,
                 longitude: userState.longitude,
                 criticidade: userState.gravidade
@@ -214,12 +232,17 @@ export class ChatBoot {
                         `A prioridade do seu reporte foi aumentada.\n` +
                         `Total de confirmações: ${response.data.confirmacoes.confirmacoes}`
                     );
-                } else if (response.status === 201) {
+                } else if (response.status === 201) { 
+
                     msg.reply('Reporte adicionado com sucesso! Obrigado pela colaboração!');
+
                 }
             } catch (error) {
+
                 console.error('Erro ao enviar reporte:', error);
+
                 msg.reply('Ocorreu um erro ao enviar seu reporte. Tente novamente mais tarde.');
+
             }
 
             delete this.userStates[from];
