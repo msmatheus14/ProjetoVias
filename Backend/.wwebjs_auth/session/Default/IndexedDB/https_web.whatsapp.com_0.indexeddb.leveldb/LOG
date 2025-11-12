@@ -1,26 +1,7 @@
-2025/11/08-19:10:56.269 1a5c Reusing MANIFEST C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\Backend\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2025/11/08-19:10:56.270 1a5c Recovering log #338
-2025/11/08-19:10:56.351 1a5c Reusing old log C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\Backend\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000338.log 
-2025/11/08-19:11:01.973 9f40 Level-0 table #345: started
-2025/11/08-19:11:01.983 9f40 Level-0 table #345: 837849 bytes OK
-2025/11/08-19:11:01.985 9f40 Delete type=0 #338
-2025/11/08-19:11:01.985 9f40 Manual compaction at level-0 from '\x00{\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00|\x00\x00\x00' @ 0 : 0; will stop at (end)
-2025/11/08-19:11:03.706 cac Compacting 1@1 + 3@2 files
-2025/11/08-19:11:03.803 cac Generated table #346@1: 86579 keys, 2239050 bytes
-2025/11/08-19:11:03.833 cac Generated table #347@1: 14691 keys, 2169949 bytes
-2025/11/08-19:11:03.872 cac Generated table #348@1: 30272 keys, 1068778 bytes
-2025/11/08-19:11:03.872 cac Compacted 1@1 + 3@2 files => 5477777 bytes
-2025/11/08-19:11:03.872 cac compacted to: files[ 0 0 3 0 0 0 0 ]
-2025/11/08-19:11:03.873 cac Delete type=2 #340
-2025/11/08-19:11:03.873 cac Delete type=2 #341
-2025/11/08-19:11:03.873 cac Delete type=2 #342
-2025/11/08-19:11:03.873 cac Delete type=2 #345
-2025/11/08-19:11:06.685 9f40 Level-0 table #350: started
-2025/11/08-19:11:06.705 9f40 Level-0 table #350: 997602 bytes OK
-2025/11/08-19:11:06.705 9f40 Delete type=0 #344
-2025/11/08-19:11:06.709 9f40 Compacting 1@1 + 3@2 files
-2025/11/08-19:11:06.801 9f40 Generated table #351@1: 82950 keys, 2235022 bytes
-2025/11/08-19:11:06.842 9f40 Generated table #352@1: 21814 keys, 2186786 bytes
-2025/11/08-19:11:06.882 9f40 Generated table #353@1: 32162 keys, 1277134 bytes
-2025/11/08-19:11:06.882 9f40 Compacted 1@1 + 3@2 files => 5698942 bytes
-2025/11/08-19:11:06.883 9f40 compacted to: files[ 0 0 3 0 0 0 0 ]
+2025/11/12-17:57:47.180 a0d0 Reusing MANIFEST C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\Backend\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/11/12-17:57:47.183 a0d0 Recovering log #349
+2025/11/12-17:57:47.384 a0d0 Reusing old log C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\Backend\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000349.log 
+2025/11/12-17:57:47.385 a0d0 Delete type=2 #346
+2025/11/12-17:57:47.385 a0d0 Delete type=2 #347
+2025/11/12-17:57:47.385 a0d0 Delete type=2 #348
+2025/11/12-17:57:47.385 a0d0 Delete type=2 #350

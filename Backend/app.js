@@ -21,16 +21,19 @@ connectDB();
 app.use(express.json());
 app.use(cors())
 
-
-
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-
-const chatboot = new ChatBoot()
-
-
+// Inicialização do ChatBot com tratamento de erros
+let chatboot;
+try {
+  chatboot = new ChatBoot();
+  console.log('✅ ChatBot inicializado com sucesso!');
+} catch (error) {
+  console.error('❌ Erro ao inicializar ChatBot:', error.message);
+  console.log('⚠️  O ChatBot será reiniciado automaticamente em caso de erro...');
+}
 
 app.use('/', recebimentoRouter);
 app.use('/', ruaRouter);
