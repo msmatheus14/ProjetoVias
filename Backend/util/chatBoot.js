@@ -22,7 +22,7 @@ export class ChatBoot {
 
                 authStrategy: new LocalAuth(),
                 puppeteer: {
-                   // executablePath: '/usr/bin/chromium-browser',
+                   executablePath: '/usr/bin/chromium-browser',
                     headless: true,
                     args: [
                         '--no-sandbox',
@@ -36,22 +36,22 @@ export class ChatBoot {
                 }
             });
 
-            // Evento QR: sistema aguarda autenticação por 2 minutos
+            
             this.client.on('qr', (qr) => {
                 this.isWaitingForAuth = true;
                 console.log('📱 QR CODE GERADO - Aguardando autenticação do WhatsApp...');
                 qrcode.generate(qr, { small: true });
 
-                // Limpa timeout anterior se existir
+               
                 if (this.qrCodeTimeout) clearTimeout(this.qrCodeTimeout);
 
-                // Se não autenticar em 2 minutos, reinicia
+               
                 this.qrCodeTimeout = setTimeout(() => {
                     if (this.isWaitingForAuth) {
                         console.error('⏱️  TIMEOUT - Autenticação não concluída em 2 minutos!');
                         this.restartChatBot();
                     }
-                }, 120000); // 2 minutos
+                }, 120000); 
             });
 
             this.client.on('ready', () => {
@@ -59,7 +59,7 @@ export class ChatBoot {
                 this.isInitializing = false;
                 this.isWaitingForAuth = false;
 
-                // Limpa timeout de autenticação
+               
                 if (this.qrCodeTimeout) {
                     clearTimeout(this.qrCodeTimeout);
                     this.qrCodeTimeout = null;
