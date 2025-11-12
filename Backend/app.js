@@ -25,14 +25,14 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// Inicialização do ChatBot com tratamento de erros
+
 let chatboot;
 try {
   chatboot = new ChatBoot();
-  console.log('✅ ChatBot inicializado com sucesso!');
+  console.log('ChatBot inicializado com sucesso!');
 } catch (error) {
-  console.error('❌ Erro ao inicializar ChatBot:', error.message);
-  console.log('⚠️  O ChatBot será reiniciado automaticamente em caso de erro...');
+  console.error('Erro ao inicializar ChatBot:', error.message);
+  console.log('O ChatBot será reiniciado automaticamente em caso de erro...');
 }
 
 app.use('/', recebimentoRouter);

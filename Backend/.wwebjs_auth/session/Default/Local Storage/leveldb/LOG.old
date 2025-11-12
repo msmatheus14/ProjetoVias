@@ -1,3 +1,2 @@
-2025/11/08-19:10:55.873 1a5c Reusing MANIFEST C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\Backend\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2025/11/08-19:10:55.873 1a5c Recovering log #19
-2025/11/08-19:10:55.874 1a5c Reusing old log C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\Backend\.wwebjs_auth\session\Default\Local Storage\leveldb/000019.log 
+2025/11/12-17:59:25.644 a320 Creating DB C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\Backend\.wwebjs_auth\session\Default\Local Storage\leveldb since it was missing.
+2025/11/12-17:59:25.648 a320 Reusing MANIFEST C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\Backend\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001

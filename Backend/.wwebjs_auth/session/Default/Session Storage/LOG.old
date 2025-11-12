@@ -1,3 +1,2 @@
-2025/10/26-23:43:13.085 7eec Reusing MANIFEST C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\.wwebjs_auth\session\Default\Session Storage/MANIFEST-000001
-2025/10/26-23:43:13.087 7eec Recovering log #3
-2025/10/26-23:43:13.088 7eec Reusing old log C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\.wwebjs_auth\session\Default\Session Storage/000003.log 
+2025/11/12-17:59:26.232 280c Creating DB C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\Backend\.wwebjs_auth\session\Default\Session Storage since it was missing.
+2025/11/12-17:59:26.236 280c Reusing MANIFEST C:\Users\mathe\OneDrive\Área de Trabalho\ProjetoVias\Backend\.wwebjs_auth\session\Default\Session Storage/MANIFEST-000001

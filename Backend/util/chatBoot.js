@@ -10,6 +10,8 @@ export class ChatBoot {
         
         this.userStates = {};
         this.isInitializing = false;
+        this.qrCodeTimeout = null;
+        this.isWaitingForAuth = false;
 
         this.initializeClient();
     }
@@ -34,22 +36,53 @@ export class ChatBoot {
                 }
             });
 
-            this.client.on('qr', qr => qrcode.generate(qr, { small: true }));
-            this.client.on('ready', () => {
-                console.log('API WHATSAPP CONECTADA!');
-                this.isInitializing = false;
+            // Evento QR: sistema aguarda autenticação por 2 minutos
+            this.client.on('qr', (qr) => {
+                this.isWaitingForAuth = true;
+                console.log('📱 QR CODE GERADO - Aguardando autenticação do WhatsApp...');
+                qrcode.generate(qr, { small: true });
+
+                // Limpa timeout anterior se existir
+                if (this.qrCodeTimeout) clearTimeout(this.qrCodeTimeout);
+
+                // Se não autenticar em 2 minutos, reinicia
+                this.qrCodeTimeout = setTimeout(() => {
+                    if (this.isWaitingForAuth) {
+                        console.error('⏱️  TIMEOUT - Autenticação não concluída em 2 minutos!');
+                        this.restartChatBot();
+                    }
+                }, 120000); // 2 minutos
             });
+
+            this.client.on('ready', () => {
+                console.log('✅ API WHATSAPP CONECTADA!');
+                this.isInitializing = false;
+                this.isWaitingForAuth = false;
+
+                // Limpa timeout de autenticação
+                if (this.qrCodeTimeout) {
+                    clearTimeout(this.qrCodeTimeout);
+                    this.qrCodeTimeout = null;
+                }
+            });
+
             this.client.on('message', msg => this.handleMessage(msg));
             
            
             this.client.on('disconnected', (reason) => {
-                console.error('WhatsApp desconectado:', reason);
+                console.error('❌ WhatsApp desconectado:', reason);
+                this.isWaitingForAuth = false;
+                if (this.qrCodeTimeout) {
+                    clearTimeout(this.qrCodeTimeout);
+                    this.qrCodeTimeout = null;
+                }
                 this.restartChatBot();
             });
 
             this.client.initialize();
         } catch (error) {
-            console.error('Erro ao inicializar ChatBot:', error.message);
+            console.error('❌ Erro ao inicializar ChatBot:', error.message);
+            this.isWaitingForAuth = false;
             this.restartChatBot();
         }
     }
@@ -60,13 +93,20 @@ export class ChatBoot {
         this.isInitializing = true;
         console.log('🔄 Reiniciando ChatBot em 5 segundos...');
         
+        
+        this.isWaitingForAuth = false;
+        if (this.qrCodeTimeout) {
+            clearTimeout(this.qrCodeTimeout);
+            this.qrCodeTimeout = null;
+        }
+        
         setTimeout(() => {
             try {
                 if (this.client) {
                     this.client.destroy().catch(() => {});
                 }
             } catch (error) {
-                console.error('Erro ao destruir cliente anterior:', error.message);
+                console.error('❌ Erro ao destruir cliente anterior:', error.message);
             }
             
             this.initializeClient();
@@ -76,6 +116,12 @@ export class ChatBoot {
     async handleMessage(msg) {
         try {
             if (msg.fromMe) return;
+
+            
+            if (this.isWaitingForAuth) {
+                console.log('⏳ Aguardando autenticação do WhatsApp, mensagens não serão processadas no momento.');
+                return;
+            }
 
             const from = msg.from;
             const userState = this.userStates[from] || { etapa: 0 };
@@ -133,7 +179,7 @@ export class ChatBoot {
                         
                         await msg.reply(mensagem);
                     } catch (error) {
-                        console.error('❌ Erro ao buscar buracos:', error.message);
+                        console.error('❌Erro ao buscar buracos:', error.message);
                         await msg.reply('Ocorreu um erro ao buscar os buracos. Tente novamente mais tarde.');
                     }
 
